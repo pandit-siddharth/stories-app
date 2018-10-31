@@ -1,0 +1,22 @@
+<div class="width-container">
+  <div class="form-group">
+    <div class="input-group">
+      <input type="text" class="form-control" name="searchString" placeholder="Search by title.." [(ngModel)]="searchString">
+    </div>
+  </div>
+
+  <table class="table table-bordered table-sm width-container">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let col of columns">
+          {{col}}
+        </th>
+      </tr>
+      <tr *ngFor="let story of stories | async |  filter : 'title' : searchString; let i = index" (click)="openModal(story)">
+        <td *ngFor="let col of columns">
+          {{story[col]}}
+        </td>
+      </tr>
+    </thead>
+  </table>
+</div>
